@@ -70,7 +70,7 @@ PRESETS = {
     "Rau und hochdimensional": {"task": "sprung32", "N": DEFAULT_N, "n0": DEFAULT_N0, "info": DEFAULT_INFO, "netz": DEFAULT_NETZ, "seed": DEFAULT_SEED},
 }
 PRESET_HELP = {
-    "Standardfall (Voreinstellung)": "Netz 3×3, p = 0,9, N = 1024: die erwartete Trefferzahl liegt mit etwa 54 knapp über der Schwelle von 50; Importance Sampling und Sobol in Blöcken liegen eng beieinander (Faktor 0,33 gegen 0,46).",
+    "Standardfall (Voreinstellung)": "Netz 3×3, p = 0,9, N = 1024: die erwartete Trefferzahl liegt mit etwa 54 knapp über der Schwelle von 50; Importance Sampling und Sobol in Blöcken liegen nah beieinander, Importance Sampling ist etwas besser (Faktor 0,33 bis 0,36 gegen 0,37 bis 0,46, je nach Messung).",
     "Seltener Ausfall": "Netz 3×3, p = 0,99: erwartet wird kaum ein Treffer (N·π = 0,4). Importance Sampling senkt die Varianz auf rund 2 %; alle anderen Verfahren bleiben bei etwa 1 und decken nur etwa ein Drittel.",
     "Glatt und hochdimensional": "exp(Σ aᵢ uᵢ) in 64 Dimensionen mit abfallenden Gewichten: Sobol senkt die Varianz auf 0,25 %, der naive Balken ist rund 23-mal zu breit; Blöcke sind ehrlich und kosten Genauigkeit.",
     "Symmetrie": "(Σ(uᵢ − ½))²: antithetische Paare verdoppeln die Varianz (Faktor 2,4), Sobol senkt sie auf 0,2 %.",

@@ -2,8 +2,8 @@
 Sebastian Hanisch - Operations Research und Machine Learning
 
 Stück 16 (Abschluss) der Linie "Monte-Carlo-Schätzung und Varianzreduktion": Kein neues Verfahren, sondern die ENTSCHEIDUNG wird gemessen. Elf Aufgaben mit exakter Wahrheit, sechs Bauarten des Schätzers mit je gleich
-vielen Auswertungen: Sobol gewinnt die meisten, Importance Sampling die seltenen Ausfälle (Kippschwelle: erwartete Trefferzahl N·π ≈ 50), antithetisch gewinnt nie; bei seltenen Ereignissen und schweren Schwänzen
-bricht jede einfache Fehlerangabe; ein Probelauf ersetzt die Regel nicht.
+vielen Auswertungen: Sobol gewinnt die meisten, Importance Sampling die seltenen Ausfälle (Kippschwelle: erwartete Trefferzahl N·π ≈ 50), antithetisch gewinnt bei N = 1024 nie; bei sehr seltenen Ereignissen und schweren Schwänzen
+bricht die Fehlerangabe der meisten Verfahren; ein Probelauf ersetzt die Regel nicht.
 
 Lauffähig mit: streamlit run app.py
 """
@@ -79,7 +79,7 @@ with st.expander("So wählt man den Schätzer", expanded=True):
 Die **Regel** dieser Demo hat zwei Fragen:
 
 1. **Wie viele Treffer erwarten Sie?** Bei einem seltenen Ereignis (Netzausfall) ist die erwartete Trefferzahl **N·π** das Maß. Liegt sie **unter 50**, gewinnt **Importance Sampling** (die Hilfsverteilung ist hier als bekannt angenommen; sie zu lernen ist Stück 8); darüber **Sobol in acht Blöcken**.
-2. **Ist die Fehlerangabe ehrlich?** Der naive Balken einer einzelnen Sobol-Folge ist oft **mehrfach zu breit**; acht unabhängige Blöcke machen ihn ehrlich und kosten Genauigkeit. Bei **seltenen Ereignissen** und **schweren Schwänzen** hält die einfache Fehlerangabe fast aller Verfahren nicht.
+2. **Ist die Fehlerangabe ehrlich?** Der naive Balken einer einzelnen Sobol-Folge ist oft **mehrfach zu breit**; acht unabhängige Blöcke machen ihn ehrlich und kosten Genauigkeit. Bei **sehr seltenen Ereignissen** (N·π unter etwa 1) und **schweren Schwänzen** hält die Fehlerangabe der meisten Verfahren nicht.
 
 Die anderen Bauarten gelten **nur nach Messung**: **Kontrollvariate** bei großem ρ², **Latin Hypercube** bei additiver Struktur, **antithetisch** nur bei negativer Korrelation der Paare (bei symmetrischen Aufgaben kostet es das Doppelte).
 Vor diesen beiden Fragen steht der **Baum** der Informationslage (Daten schon da? anhalten? Gradient? Erwartung in Erwartung? ziehbar?): er verweist auf die Stücke der Linie.
@@ -223,7 +223,7 @@ st.markdown(
 |---|---|---|
 | **Die Fehlerangabe passt zum Verfahren** | Der naive Balken einer Sobol-Folge ist mehrfach zu breit; acht Blöcke sind ehrlich, kosten aber Genauigkeit (Experiment 2). | Stück 9 |
 | **Es gibt genug Treffer** | Bei weniger als etwa 50 erwarteten Treffern gewinnt Importance Sampling, bei sehr seltenen Ereignissen decken alle anderen Intervalle nur etwa ein Drittel (Experiment 2 und 3). | Stück 7 und 8 |
-| **Der Schwanz ist leicht** | Beim schweren Schwanz deckt keine übliche Fehlerangabe zu 95 % (Experiment 2). | Stück 7 (Pareto-k̂) |
+| **Der Schwanz ist leicht** | Beim schweren Schwanz decken die üblichen Fehlerangaben entweder zu wenig (0,74 bis 0,86) oder durch zu breite Balken zu viel (1,00) (Experiment 2). | Stück 7 (Pareto-k̂) |
 | **Antithetisch hilft** | Bei symmetrischen Aufgaben verdoppelt es die Varianz (Experiment 1). | Stück 2 |
 | **Ein Probelauf sagt voraus** | Er ist bei seltenen Ereignissen blind, unterschätzt den Sobol-Gewinn und kostet bis über das Endbudget (Experiment 4). | Stück 3, 5 und 9 |
 | **Das Ziehen klappt** | Lässt sich die Verteilung nicht ziehen, hilft keines dieser Verfahren (Baum, Frage 0). | Inverse Probleme 8 |
@@ -238,7 +238,7 @@ Zufallszahlen aus festen Strömen (SplitMix64), Sobol mit Owen-Scrambling und ei
 
 **Grenzen.** Nur diese elf Aufgaben, keine Mischformen. Die **Hilfsverteilung des Importance Sampling ist als optimal bekannt angenommen**; sie zu lernen kostet Probeläufe (Stück 8), die Zahlen sind Bestwerte. Kontrollvariate und Latin Hypercube haben je eine Bauart,
 Sobol nur Owen-Scrambling mit acht Blöcken. **Rechenzeit ist nicht gemessen** (gleiche Zahl Auswertungen, nicht gleiche Sekunden). Multilevel, geschachtelte Erwartungen, Gradienten, Bootstrap, Sobol-Indizes und Abbruchregeln sind **nicht neu gemessen**, ihre Zahlen im Baum stammen aus den Stücken der Linie.
-Die **Schwelle 50** wurde an Gitternetzen im Bereich N·π von 0,1 bis rund 950 gefunden; sie gilt für diese Netze und Budgets, nicht als Naturgesetz.
+Die **Schwelle 50** wurde an Gitternetzen im Bereich N·π von 0,4 bis rund 1000 gefunden (zwischen 57 und 130 liegt keine Zelle, die Daten legen sie nur auf etwa 50 bis 130 fest); sie gilt für diese Netze und Budgets, nicht als Naturgesetz.
 
 **Bekannte Probleme und Unsicherheiten.** Varianzfaktoren aus 300 Wiederholungen sind auf etwa ±8 % (glatte Aufgaben) bis ±35 % (Ereignisindikatoren) genau; belastbar sind Rangfolgen mit mindestens doppeltem Abstand, enge Fälle (Standardfall: Sobol in Blöcken gegen Importance Sampling) sind es nicht.
 Die Schwelle wurde an den 3×3-Netzen abgelesen und an den 3×4-Netzen geprüft, nicht blind festgelegt. Literatur: Lehrbuchwissen und die Stücke der Linie, keine Quelle neu gelesen. Die Oberfläche ist mit AppTest geprüft und im Browser angesehen, nicht mit echtem Mausklick auf jedem Gerät.

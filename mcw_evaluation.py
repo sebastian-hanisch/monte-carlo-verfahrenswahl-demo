@@ -327,6 +327,6 @@ def tree_path(s: Settings, a: Analysis) -> list[dict]:
         steps = steps + [dict(nr=5, frage="Der Schätzer selbst: erwartete Trefferzahl unter der Schwelle?", antwort="Ja" if a.rec == "is" else "Nein",
                               folge=f"{mlabel(a.rec)} ({npi_txt}, Schwelle {zahl(C.NPI_THRESHOLD)}); gemessener Faktor {fac(f[a.rec])}, bester ehrlicher {mlabel(a.best_honest)} {fac(f[a.best_honest])}",
                               verweis="Stück 7 und 8 (Importance Sampling), Stück 9 (Sobol)", zahl_aus="dieses Stück, gemessen"),
-                         dict(nr=6, frage="Ist die Fehlerangabe ehrlich?", antwort="siehe Experiment 2", folge="Seltenes Ereignis und schwerer Schwanz brechen die Fehlerangabe aller Verfahren außer (bei seltenem Ereignis) Importance Sampling.",
+                         dict(nr=6, frage="Ist die Fehlerangabe ehrlich?", antwort="siehe Experiment 2", folge="Sehr seltene Ereignisse (N·π unter etwa 1) und schwere Schwänze brechen die Fehlerangabe der meisten Verfahren; bei sehr seltenem Ereignis hält sie nur Importance Sampling.",
                               verweis="Experiment 2", zahl_aus="dieses Stück, gemessen")]
     return steps
