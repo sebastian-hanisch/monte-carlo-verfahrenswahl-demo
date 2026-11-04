@@ -1,13 +1,12 @@
 # Verfahrenswahl: welcher Schätzer wann, und ist die Fehlerangabe ehrlich? – Streamlit-Demo
 
-<!-- TODO nach dem Deploy: direkt hierher den Live-Link setzen (Leerzeile davor und danach):
-**[→ Demo live ausprobieren](https://sebastianhanisch-monte-carlo-verfahrenswahl-demo.streamlit.app/)** -->
+**[→ Demo live ausprobieren](https://sebastianhanisch-monte-carlo-verfahrenswahl-demo.streamlit.app/)**
 
 Sechzehntes und letztes Stück der Linie **„Monte-Carlo-Schätzung und Varianzreduktion“** in der „Konzepte“-Reihe für die Website „Sebastian Hanisch – Operations Research und Machine Learning“ (die Linie wird erst vollständig veröffentlicht). Nachfolger von [bootstrap-demo](https://github.com/sebastian-hanisch/bootstrap-demo) (Stück 15) und Abschluss nach dem Muster von [matroid-verfahrenswahl-demo](https://github.com/sebastian-hanisch/matroid-verfahrenswahl-demo) und [kegel-verfahrenswahl-demo](https://github.com/sebastian-hanisch/kegel-verfahrenswahl-demo): Hier wird **kein neues Verfahren** gebaut, sondern die **Entscheidung** gemessen. Welche Bauart des Schätzers (einfach, antithetisch, Kontrollvariate, Latin Hypercube, Sobol, Importance Sampling) gewinnt bei welcher Aufgabe, wann kippt die Wahl, ist die Fehlerangabe danach ehrlich, und wie gut sagt ein kleiner Probelauf das voraus? Vehikel sind elf Aufgaben mit exakter Wahrheit, darunter die **Zuverlässigkeit der Netze der Reihe** (Hantel gibt es hier nicht; Gitter 3×3 und 3×4).
 
 ## Warum dieses Problem
 
-Fünfzehn Stücke haben Werkzeuge angesammelt, und jedes senkt bei gleichem Aufwand den Fehler *irgendwo*. Wer eine neue Aufgabe vor sich hat, braucht eine Regel. Die Demo misst, wie viel die richtige Wahl bringt, wie viel die falsche kostet und ob man die Wahl mit einem kleinen Probelauf treffen kann. Jede Bauart bekommt **genau N Auswertungen** der Aufgabe; gemessen wird der mittlere quadratische Fehler gegen die Wahrheit, relativ zum einfachen Monte Carlo (**Faktor unter 1 = Gewinn**).
+Die Stücke 1 bis 15 haben Werkzeuge angesammelt, und jedes senkt bei gleichem Aufwand den Fehler *irgendwo*. Wer eine neue Aufgabe vor sich hat, braucht eine Regel. Die Demo misst, wie viel die richtige Wahl bringt, wie viel die falsche kostet und ob man die Wahl mit einem kleinen Probelauf treffen kann. Jede Bauart bekommt **genau N Auswertungen** der Aufgabe; gemessen wird der mittlere quadratische Fehler gegen die Wahrheit, relativ zum einfachen Monte Carlo (**Faktor unter 1 = Gewinn**).
 
 ## Befunde und Korrekturen gegenüber dem Plan
 
@@ -186,4 +185,4 @@ Gebaut mit Streamlit, Plotly, NumPy und fpdf2.
 
 ---
 
-Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zu den Demos: [Interaktive Demos](https://sebastianhanisch.net/demos.html).
+Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zur Reihe: [Monte-Carlo-Schätzung: vom Schätzer zur Wahl](https://sebastianhanisch.net/konzepte-monte-carlo.html).
